@@ -66,63 +66,6 @@ func CORS(next http.Handler) http.Handler {
 	})
 }
 
-// func GetTweetsEndpoint(response http.ResponseWriter, request *http.Request) {
-// 	fmt.Println("Starting the application..fdsfsadfdsf.")
-// 	response.Header().Set("content-type", "application/json")
-// 	var tweets []Tweet
-// 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-
-// 	tweet := Tweet{
-// 		ID:       3,
-// 		FullText: "432dfsfasd",
-// 	}
-// 	_, err := collection.InsertOne(ctx, tweet)
-// 	if err != nil {
-// 		fmt.Println("------------------qwerr-------------------------------")
-// 	}
-// 	cursor, err := collection.Find(ctx, bson.M{})
-// 	if err != nil {
-// 		fmt.Println("-----------------43424324r-------------------------------")
-// 		response.WriteHeader(http.StatusInternalServerError)
-// 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-// 		return
-// 	}
-// 	if err = cursor.All(ctx, &tweets); err != nil {
-// 		response.WriteHeader(http.StatusInternalServerError)
-// 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-// 		return
-// 	}
-// 	json.NewEncoder(response).Encode(tweets)
-// }
-
-// func SearchTweetsEndpoint(response http.ResponseWriter, request *http.Request) {
-// 	response.Header().Set("content-type", "application/json")
-// 	queryParams := request.URL.Query()
-// 	var tweets []Tweet
-// 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-// 	searchStage := bson.D{
-// 		{"$search", bson.D{
-// 			{"index", "synsearch"},
-// 			{"text", bson.D{
-// 				{"query", queryParams.Get("q")},
-// 				{"path", "full_text"},
-// 				{"synonyms", "slang"},
-// 			}},
-// 		}},
-// 	}
-// 	cursor, err := collection.Aggregate(ctx, mongo.Pipeline{searchStage})
-// 	if err != nil {
-// 		response.WriteHeader(http.StatusInternalServerError)
-// 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-// 		return
-// 	}
-// 	if err = cursor.All(ctx, &tweets); err != nil {
-// 		response.WriteHeader(http.StatusInternalServerError)
-// 		response.Write([]byte(`{ "message": "` + err.Error() + `" }`))
-// 		return
-// 	}
-// 	json.NewEncoder(response).Encode(tweets)
-// }
 
 func main() {
 	go jobCreateNewNotification()
