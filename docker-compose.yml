@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+    mongo-db:
+        image: mongo:3.6.8
+        container_name: mongo-dkr
+        networks:
+            aytra:
+        volumes:
+            - mongo-notifications:/data/db
+            # - /var/lib/docker/volumes/infra_mongo-data/_data/configdb:/data/configdb
+        ports:
+            - "3306:27017"
+    # web:
+    #     build: .
+    #     networks:
+    #         aytra:
+    #     ports:
+    #         - "12345:12345"
+    #     environment:
+    #         MONGODB_URI: "mongodb://localhost:3306/"
+
+networks:
+    aytra:
+        external:
+            name: aytra
+volumes:
+    mongo-notifications:
+
+
